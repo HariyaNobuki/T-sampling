@@ -61,7 +61,7 @@ if __name__ == "__main__":
     numarms_5 = 5
     numarms_7 = 5
 
-    # 統計も同時でいいような気がしています
+    # 形式を変換したら簡単だと思っています
     eg_3_reward_hist = pd.DataFrame()
     eg_5_reward_hist = pd.DataFrame()
     eg_7_reward_hist = pd.DataFrame()
@@ -77,7 +77,7 @@ if __name__ == "__main__":
         ucb_reward_hist[i] = simulate_ucb()
         ts_reward_hist[i] = simulate_ts()
     print(crayons.red('stats'))
-    np_quantile_30 = {}
+    np_quantile_30 = {m :  np.percentile(results_np[m], 30, axis=0) for m in sample_list}
     np_quantile_70 = {}
 
 
