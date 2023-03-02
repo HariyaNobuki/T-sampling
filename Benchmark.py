@@ -77,6 +77,9 @@ if __name__ == "__main__":
         ucb_reward_hist[i] = simulate_ucb()
         ts_reward_hist[i] = simulate_ts()
     print(crayons.red('stats'))
+    np_quantile_30 = {}
+    np_quantile_70 = {}
+
 
     # data science
 
