@@ -54,6 +54,7 @@ def makefiles(path):
 
 if __name__ == "__main__":
     sample_list = ['eg_3','eg_5','eg_7','ucb','ts']
+    draw_type == 'ERRORBAR'
     makefiles(os.getcwd())  # cerrent dir
 
     num_trial = 11
@@ -85,7 +86,7 @@ if __name__ == "__main__":
             # ucb ts
             ucb_reward = np.append(ucb_reward,[simulate_ucb()],axis=0)
             ts_reward = np.append(ts_reward,[simulate_ts()],axis=0)
-    sample_list = ['eg_3','eg_5','eg_7','ucb','ts']
+    # sample list
     results_np = {'eg_3':eg_3_reward,'eg_5':eg_5_reward,'eg_7':eg_7_reward,'ucb':ucb_reward,'ts':ts_reward}
     print(crayons.red('stats'))
     np_mean = {m :  np.percentile(results_np[m], 0.5, axis=0) for m in sample_list}
