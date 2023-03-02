@@ -11,16 +11,30 @@ def simulate_eg(epsilon):
     arms = []
     for i in range(numarms_3):
         arms.append(Arm(0.3))
+    for i in range(numarms_5):
+        arms.append(Arm(0.5))
+    for i in range(numarms_7):
+        arms.append(Arm(0.7))
     return epsilon_greedy(arms=arms, T=10**3, epsilon=epsilon)
 
 def simulate_ucb():
-    arms = [Arm(0.3) for i in range(4)]
-    arms.append(Arm(0.5))
+    arms = []
+    for i in range(numarms_3):
+        arms.append(Arm(0.3))
+    for i in range(numarms_5):
+        arms.append(Arm(0.5))
+    for i in range(numarms_7):
+        arms.append(Arm(0.7))
     return UCB(arms=arms, T=10**3)
 
 def simulate_ts():
-    arms = [Arm(0.3) for i in range(4)]
-    arms.append(Arm(0.5))
+    arms = []
+    for i in range(numarms_3):
+        arms.append(Arm(0.3))
+    for i in range(numarms_5):
+        arms.append(Arm(0.5))
+    for i in range(numarms_7):
+        arms.append(Arm(0.7))
     return thompson_sampling(arms=arms, T=10**3)
 
 def __out_benchmark(array):
