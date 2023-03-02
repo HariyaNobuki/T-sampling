@@ -55,7 +55,7 @@ if __name__ == "__main__":
     sample_list = ['eg_3','eg_5','eg_7','ucb','ts']
     makefiles(os.getcwd())  # cerrent dir
 
-    num_trial = 100
+    num_trial = 101
     # complication setteing
     numarms_3 = 5
     numarms_5 = 5
@@ -76,6 +76,7 @@ if __name__ == "__main__":
         # ucb ts
         ucb_reward_hist[i] = simulate_ucb()
         ts_reward_hist[i] = simulate_ts()
+    print(crayons.red('stats'))
 
     # data science
 

@@ -12,12 +12,12 @@ def __get_score(arm, t):
 
 def UCB(arms, T):
     __init(arms)
-    reward = 0
+    reward = [0]
 
     for i in range(1, T+1):
         scores = [__get_score(arm, i) for arm in arms]
         max_score_index = scores.index(max(scores))
-        reward += arms[max_score_index].play()
+        reward.append(reward[-1] + arms[max_score_index].play())
     return reward
 
 if __name__=="__main__":
