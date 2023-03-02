@@ -1,3 +1,6 @@
+# trial for TS
+# Hariya Nobuki
+
 from thompson_sampling import thompson_sampling
 from epsilon_greedy import epsilon_greedy
 from upper_confidence_bound import UCB
