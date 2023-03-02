@@ -50,14 +50,24 @@ def makefiles(path):
     for sam in sample_list:
         os.makedirs(path+"/"+sam,exist_ok=True)
 
+def get_bounder(total_mean, quantile_30, quantile_70, absolute=False):
+    bound_dict = dict()
+    for m in sample_list:
+        # if absolute:
+        #     bound_dict[m] = np.abs(np.stack([(total_mean[m]-quantile_30[m]),
+        #                                      (quantile_70[m]-total_mean[m])], axis=0))
+        # else:
+        bound_dict[m] = np.stack([(total_mean[m]-quantile_30[m]),
+                                  (quantile_70[m]-total_mean[m])], axis=0)
+    return bound_dict
 
 
 if __name__ == "__main__":
     sample_list = ['eg_3','eg_5','eg_7','ucb','ts']
-    draw_type == 'ERRORBAR'
+    draw_type = 'MEANERROR'
     makefiles(os.getcwd())  # cerrent dir
 
-    num_trial = 11
+    num_trial = 100
     # complication setteing
     numarms_3 = 5
     numarms_5 = 5
@@ -92,38 +102,18 @@ if __name__ == "__main__":
     np_mean = {m :  np.percentile(results_np[m], 0.5, axis=0) for m in sample_list}
     np_quantile_30 = {m :  np.percentile(results_np[m], 0.25, axis=0) for m in sample_list}
     np_quantile_70 = {m :  np.percentile(results_np[m], 0.75, axis=0) for m in sample_list}
-
+    np_bounds = get_bounder(np_mean, np_quantile_30, np_quantile_70, absolute=True)
+    idx = np.array([i for i in range(np_quantile_30['eg_3'].shape[0])])
     fig, ax = plt.subplots(1)
     upperlimits = [True] * 15
     lowerlimits = [True] * 15
     if draw_type == 'ERRORBAR':
-        for j, m in enumerate(model_lists):
-            if model_masks[j]:
-                # plt.errorbar(idx, np_mean_dict[m], yerr=np_bounds[m], uplims=upperlimits, lolims=lowerlimits,
-                #              label=m, capthick=2)
-                plt.errorbar(idx, np_mean_dict[m], yerr=np_bounds[m], label=m, capsize=3, capthick=2)
+        for j, m in enumerate(sample_list):
+            plt.errorbar(idx, np_mean[m], yerr=np_bounds[m], label=m, capsize=3, capthick=2)
     elif draw_type == 'MEANERROR':
-        for j, m in enumerate(model_lists):
-            if model_masks[j]:
-                plt.plot(idx, np_mean_dict[m], label=m, marker='s', linewidth=1, ms=3)     # fmt='o',
-    # ax.set_yticks(np.arange(92.5, 94.4, 0.2))
-    ax.set_yticks(np.arange(93.1, 94.2, 0.2))
+        for j, m in enumerate(sample_list):
+            plt.plot(idx, np_mean[m], label=m, marker='s', linewidth=-0.1, ms=0.2)     # fmt='o',
     ax.grid(True)
-    ax.set_xlabel('Number of Samples')
-    ax.set_ylabel('Testing Accuracy')
     plt.legend(loc='lower right')
     plt.grid(b=True, which='major', color='#666699', linestyle='--')
-    fig.savefig(os.path.join(root_path, 'Accuracy.png'))
-
-    # data science
-
-    #print('Epsilon-greedy_0.3')
-    #__out_benchmark(eg_3_reward_hist)
-    #print('Epsilon-greedy_0.5')
-    #__out_benchmark(eg_5_reward_hist)
-    #print('Epsilon-greedy_0.7')
-    #__out_benchmark(eg_7_reward_hist)
-    #print('UCB')
-    #__out_benchmark(ucb_reward_hist)
-    #print('Thompson sampling')
-    #__out_benchmark(ts_reward_hist)
+    fig.savefig(os.path.join(os.getcwd(), 'errorbar.png'))
