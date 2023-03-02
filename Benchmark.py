@@ -60,6 +60,7 @@ if __name__ == "__main__":
     numarms_5 = 5
     numarms_7 = 5
 
+    # 統計も同時でいいような気がしています
     eg_3_reward_hist = []
     eg_5_reward_hist = []
     eg_7_reward_hist = []
