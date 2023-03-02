@@ -45,11 +45,15 @@ def __out_benchmark(array):
 
 def makefiles(path):
     print(crayons.red('make files'))
+    for sam in sample_list:
+        os.makedirs(path+"/"+sam,exist_ok=True)
 
 
 
 if __name__ == "__main__":
+    sample_list = ['eg_3','eg_5','eg_7','ucb','ts']
     makefiles(os.getcwd())  # cerrent dir
+
     num_trial = 100
     # complication setteing
     numarms_3 = 5
