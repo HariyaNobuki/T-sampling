@@ -8,8 +8,9 @@ from Arm import Arm
 import numpy as np
 
 def simulate_eg(epsilon):
-    arms = [Arm(0.3) for i in range(4)]
-    arms.append(Arm(0.5))
+    arms = []
+    for i in range(numarms_3):
+        arms.append(Arm(0.3))
     return epsilon_greedy(arms=arms, T=10**3, epsilon=epsilon)
 
 def simulate_ucb():
@@ -32,7 +33,7 @@ if __name__ == "__main__":
     numarms_3 = 5
     numarms_5 = 5
     numarms_7 = 5
-    
+
     eg_3_reward_hist = []
     eg_5_reward_hist = []
     eg_7_reward_hist = []
