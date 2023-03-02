@@ -28,15 +28,22 @@ def __out_benchmark(array):
 
 if __name__ == "__main__":
     loop_cnt = 100
+    # complication setteing
+    numarms_3 = 5
+    numarms_5 = 5
+    numarms_7 = 5
+    
     eg_3_reward_hist = []
     eg_5_reward_hist = []
     eg_7_reward_hist = []
     ucb_reward_hist = []
     ts_reward_hist = []
     for i in range(loop_cnt):
+        # e-greedy
         eg_3_reward_hist.append(simulate_eg(0.3))
         eg_5_reward_hist.append(simulate_eg(0.5))
         eg_7_reward_hist.append(simulate_eg(0.7))
+        # ucb ts
         ucb_reward_hist.append(simulate_ucb())
         ts_reward_hist.append(simulate_ts())
 
