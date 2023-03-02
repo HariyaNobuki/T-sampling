@@ -1,3 +1,4 @@
+# かなり直観が反映されている印象を受けた
 from numpy.random import binomial, randint
 from Arm import Arm
 
