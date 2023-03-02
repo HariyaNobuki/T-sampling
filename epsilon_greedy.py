@@ -9,10 +9,8 @@ def __calc_success_ratio(arm):
     return arm.success / (arm.success + arm.fail)
 
 def epsilon_greedy(arms, T, epsilon):
-    ite = [0]
     reward = [0]
     for i in range(1, T+1):
-        ite.append(i)
         if binomial(n=1, p=epsilon) == 1:
             # 探索ステップ : アームを一様ランダムに選ぶ
             index = randint(0, len(arms))
@@ -21,11 +19,8 @@ def epsilon_greedy(arms, T, epsilon):
             avgs = [ __calc_success_ratio(arm) for arm in arms]
             index = avgs.index(max(avgs))
         reward.append(reward[-1] + arms[index].play())
-    df = pd.DataFrame({
-        'ite': ite,
-        'reward': reward,
-    })
-    return df
+
+    return reward
 
 if __name__ == "__main__":
     arms = [Arm(0.3) for i in range(4)]

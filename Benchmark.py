@@ -6,6 +6,7 @@ from epsilon_greedy import epsilon_greedy
 from upper_confidence_bound import UCB
 from Arm import Arm
 import numpy as np
+import pandas as pd
 
 import os , sys
 import crayons
@@ -61,19 +62,20 @@ if __name__ == "__main__":
     numarms_7 = 5
 
     # 統計も同時でいいような気がしています
-    eg_3_reward_hist = []
-    eg_5_reward_hist = []
-    eg_7_reward_hist = []
-    ucb_reward_hist = []
-    ts_reward_hist = []
+    eg_3_reward_hist = pd.DataFrame()
+    eg_5_reward_hist = pd.DataFrame()
+    eg_7_reward_hist = pd.DataFrame()
+    ucb_reward_hist = pd.DataFrame()
+    ts_reward_hist = pd.DataFrame()
     for i in range(num_trial):
         # e-greedy
-        eg_3_reward_hist.append(simulate_eg(0.3))
-        eg_5_reward_hist.append(simulate_eg(0.5))
-        eg_7_reward_hist.append(simulate_eg(0.7))
+        eg_3_reward_hist[i] = simulate_eg(0.3)
+
+        eg_5_reward_hist[i] = simulate_eg(0.5)
+        eg_7_reward_hist[i] = simulate_eg(0.7)
         # ucb ts
-        ucb_reward_hist.append(simulate_ucb())
-        ts_reward_hist.append(simulate_ts())
+        ucb_reward_hist[i] = simulate_ucb()
+        ts_reward_hist[i] = simulate_ts()
 
     # data science
 
