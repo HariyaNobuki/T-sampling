@@ -21,5 +21,5 @@ def epsilon_greedy(arms, T, epsilon):
 
 if __name__ == "__main__":
     arms = [Arm(0.3) for i in range(4)]
-    arms.append(Arm(0.5))
+    arms.append(Arm(0.5))   # num Arms
     epsilon_greedy(arms=arms, T=10**3, epsilon=0.3)
