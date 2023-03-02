@@ -7,6 +7,9 @@ from upper_confidence_bound import UCB
 from Arm import Arm
 import numpy as np
 
+import os , sys
+import crayons
+
 def simulate_eg(epsilon):
     arms = []
     for i in range(numarms_3):
@@ -40,8 +43,13 @@ def simulate_ts():
 def __out_benchmark(array):
     print('\t Avg: {}, Std: {}, Max: {}, Min: {}'.format(np.average(array), np.std(array), np.max(array), np.min(array)))
 
+def makefiles(path):
+    print(crayons.red('make files'))
+
+
 
 if __name__ == "__main__":
+    makefiles(os.getcwd())  # cerrent dir
     num_trial = 100
     # complication setteing
     numarms_3 = 5
