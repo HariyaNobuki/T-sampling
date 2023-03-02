@@ -42,7 +42,7 @@ def __out_benchmark(array):
 
 
 if __name__ == "__main__":
-    loop_cnt = 100
+    num_trial = 100
     # complication setteing
     numarms_3 = 5
     numarms_5 = 5
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     eg_7_reward_hist = []
     ucb_reward_hist = []
     ts_reward_hist = []
-    for i in range(loop_cnt):
+    for i in range(num_trial):
         # e-greedy
         eg_3_reward_hist.append(simulate_eg(0.3))
         eg_5_reward_hist.append(simulate_eg(0.5))
@@ -62,13 +62,15 @@ if __name__ == "__main__":
         ucb_reward_hist.append(simulate_ucb())
         ts_reward_hist.append(simulate_ts())
 
-    print('Epsilon-greedy_0.3')
-    __out_benchmark(eg_3_reward_hist)
-    print('Epsilon-greedy_0.5')
-    __out_benchmark(eg_5_reward_hist)
-    print('Epsilon-greedy_0.7')
-    __out_benchmark(eg_7_reward_hist)
-    print('UCB')
-    __out_benchmark(ucb_reward_hist)
-    print('Thompson sampling')
-    __out_benchmark(ts_reward_hist)
+    # data science
+
+    #print('Epsilon-greedy_0.3')
+    #__out_benchmark(eg_3_reward_hist)
+    #print('Epsilon-greedy_0.5')
+    #__out_benchmark(eg_5_reward_hist)
+    #print('Epsilon-greedy_0.7')
+    #__out_benchmark(eg_7_reward_hist)
+    #print('UCB')
+    #__out_benchmark(ucb_reward_hist)
+    #print('Thompson sampling')
+    #__out_benchmark(ts_reward_hist)
